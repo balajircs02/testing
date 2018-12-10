@@ -32,7 +32,7 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "terraform-win10"
+  name             = "avaya2-win10"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
 
@@ -59,7 +59,7 @@ resource "vsphere_virtual_machine" "vm" {
 
     customize {
       windows_options {
-        computer_name = "terraform-win10"
+        computer_name = "avaya2-win10"
       }
 
       network_interface {
