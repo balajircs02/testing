@@ -32,7 +32,7 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "avaya2-win10"
+  name             = "sample-win10"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
 
@@ -59,7 +59,7 @@ resource "vsphere_virtual_machine" "vm" {
 
     customize {
       windows_options {
-        computer_name = "avaya2-win10"
+        computer_name = "sample-win10"
       }
 
       network_interface {
