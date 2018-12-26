@@ -27,12 +27,12 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "DemoWin10"
+  name          = "LinuxVM"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "sample-win10"
+  name             = "avaya-Linux"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
 
@@ -58,12 +58,13 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
     customize {
-      windows_options {
-        computer_name = "sample-win10"
+     linux_options {
+        host_name = "terraform-test"
+        domain    = "test.internal"
       }
 
       network_interface {
-        ipv4_address = "192.168.214.134"
+        ipv4_address = "192.168.214.136"
         ipv4_netmask = 24
       }
 
